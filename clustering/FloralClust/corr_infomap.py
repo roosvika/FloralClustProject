@@ -4,12 +4,11 @@ import os
 import networkx as nx
 
 import data_loading.load_xcms as data_loading
-from clustering.VOCluster import reclustering
-from clustering.louvain import create_flower_louvain_clustered_graph, \
-    create_flower_louvain_clustered_graph_only_nodes_with_edges
+from clustering.FloralClust import infomap_reclustering as reclustering
+from clustering.corr_infomap import create_flower_infomap_clustered_graph_only_nodes_with_edges
 from clustering.partition import PartitionData
-from smell import is_attractor, get_attractors_list
-from utils import invert_dict, ensure_dir_exists
+from floralclust_utils.smell import is_attractor, get_attractors_list
+from floralclust_utils.utils import invert_dict, ensure_dir_exists
 
 
 def improve_atractors(data, part_data, graph, relevant_attractors=[], threshold=0.95):
@@ -70,8 +69,8 @@ def improve_non_atracctors(data, part_data, graph, relevant_clusters=[], thresho
     return graph, part_data
 
 
-def create_flower_VOCluster_graph(data_path, graph_threshold, addaptive_threshold):
-    correlation_graph, part = create_flower_louvain_clustered_graph_only_nodes_with_edges(data_path, graph_threshold)
+def create_flower_FloralClust_graph(data_path, graph_threshold, addaptive_threshold):
+    correlation_graph, part = create_flower_infomap_clustered_graph_only_nodes_with_edges(data_path, graph_threshold)
     # part_data = PartitionData(id_to_cluster_mapping=part)
     part_data = part
     data = data_loading.get_normilezed_xcms_df(data_path)
@@ -90,7 +89,7 @@ def create_flower_VOCluster_graph(data_path, graph_threshold, addaptive_threshol
 
 
 def get_partition(data_path, graph_threshold, addaptive_threshold, dest_dir='', file_name=''):
-    graph, part_data = create_flower_VOCluster_graph(data_path, graph_threshold, addaptive_threshold)
+    graph, part_data = create_flower_FloralClust_graph(data_path, graph_threshold, addaptive_threshold)
     if dest_dir != '':
         ensure_dir_exists(dest_dir)
         nx.write_graphml(graph, os.path.join(dest_dir, file_name + '_graph' + '.graphml'))

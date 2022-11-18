@@ -1,14 +1,14 @@
 import data_loading.load_xcms as load_xcms
-from clustering.partition import get_sub_part_data, PartitionData, create_from_path
-import clustering.VOCluster.corr_infomap as voc_infomap
+from clustering.partition import get_sub_part_data
+import clustering.FloralClust.corr_infomap as voc_infomap
 from clustering_similarity import similarity
 import pandas as pd
 
-from smell import get_attractors_list, is_attractor, get_cluster_data
+from floralclust_utils.smell import get_attractors_list
 
 res_df = pd.DataFrame(columns=['Method','RI', 'ARI', 'NMI', 'Purity', 'SmellingRI', 'SmellingARI', 'SmellingNMI', 'SmellingPurity'])
 
-# VOClusterInfomap
+# FloralClustInfomap
 print('VOClust-Infomap')
 data_path = 'Data/Erucaria_7-19.xls'
 data = load_xcms.get_normilezed_xcms_df(data_path=data_path)
@@ -44,7 +44,7 @@ smelling_purity = similarity.culculate_purity(seven_part_smelling, eight_part_sm
 print(f'Purity: {smelling_purity}')
 print('*' * 50)
 res={}
-res['Method']='VOCluster-Infomap'
+res['Method']='FloralClust-Infomap'
 res['RI']=ri
 res['ARI']=ari
 res['NMI']=nmi

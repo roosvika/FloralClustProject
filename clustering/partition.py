@@ -1,5 +1,5 @@
 import json
-import utils
+from floralclust_utils import utils
 
 
 class PartitionData:

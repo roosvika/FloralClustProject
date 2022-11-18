@@ -1,18 +1,14 @@
 import data_loading.load_xcms as load_xcms
-import clustering
-from clustering.partition import get_sub_part_data, PartitionData, create_from_path
-from clustering_similarity.similarity import calculate_nmi
+from clustering.partition import get_sub_part_data, create_from_path
 from compound_separation.partition_by_compounds import get_partition_after_separation
-from compound_separation.smelling_compounds import create_smelling_compounds_hypothesises
-import clustering.VOCluster.louvain as voc_louvain
-import clustering.VOCluster.corr_infomap as voc_infomap
+import clustering.FloralClust.louvain as voc_louvain
+import clustering.FloralClust.corr_infomap as voc_infomap
 import clustering.louvain as louvain
 from clustering_similarity import similarity
 import clustering.corr_infomap as corr_infomap
-from flower_enums import MetabolitesType
 import pandas as pd
 
-from smell import get_attractors_list, is_attractor, get_cluster_data
+from floralclust_utils.smell import get_attractors_list
 
 res_df = pd.DataFrame(
     columns=['Method', 'RI', 'ARI', 'NMI', 'Purity', 'SmellingRI', 'SmellingARI', 'SmellingNMI', 'SmellingPurity'])
@@ -157,7 +153,7 @@ res['SmellingNMI'] = smelling_nmi
 res['SmellingPurity'] = smelling_purity
 res_df = res_df.append(res, ignore_index=True)
 
-# VOClusterLouvain
+# FloralClustLouvain
 print('VOClust-Louvain')
 data_path = 'Data/Erucaria_7-19.xls'
 data = load_xcms.get_normilezed_xcms_df(data_path=data_path)
@@ -194,7 +190,7 @@ smelling_purity = similarity.culculate_purity(seven_part_smelling, eight_part_sm
 print(f'Purity: {smelling_purity}')
 print('*' * 50)
 res = {}
-res['Method'] = 'VOCluster-Louvain'
+res['Method'] = 'FloralClust-Louvain'
 res['RI'] = ri
 res['ARI'] = ari
 res['NMI'] = nmi
@@ -205,7 +201,7 @@ res['SmellingNMI'] = smelling_nmi
 res['SmellingPurity'] = smelling_purity
 res_df = res_df.append(res, ignore_index=True)
 
-# VOClusterInfomap
+# FloralClustInfomap
 print('VOClust-Infomap')
 data_path = 'Data/Erucaria_7-19.xls'
 data = load_xcms.get_normilezed_xcms_df(data_path=data_path)
@@ -242,7 +238,7 @@ smelling_purity = similarity.culculate_purity(seven_part_smelling, eight_part_sm
 print(f'Purity: {smelling_purity}')
 print('*' * 50)
 res = {}
-res['Method'] = 'VOCluster-Infomap'
+res['Method'] = 'FloralClust-Infomap'
 res['RI'] = ri
 res['ARI'] = ari
 res['NMI'] = nmi
@@ -254,4 +250,4 @@ res['SmellingPurity'] = smelling_purity
 res_df = res_df.append(res, ignore_index=True)
 
 print(res_df)
-res_df.to_csv('Results/clustering_similarity_with_compound_separation.csv')
+res_df.to_csv('Results/clustering_similarity_with_compound_separation_modified.csv')

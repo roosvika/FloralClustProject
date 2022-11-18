@@ -1,6 +1,6 @@
 import networkx as nx
 
-import utils
+from floralclust_utils import utils
 from clustering.corr_infomap import find_communities
 from clustering.louvain import create_correlaton_graph
 from clustering.partition import PartitionData

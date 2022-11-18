@@ -1,8 +1,8 @@
 import numpy
 import pandas as pd
 from data_loading.load_xcms import get_time_intervals
-from flower_enums import MetabolitesType
-from utils import unite_repeated_columns
+from floralclust_utils.flower_enums import MetabolitesType
+from floralclust_utils.utils import unite_repeated_columns
 
 
 def calc_daily_pattern_value(volumes_list):

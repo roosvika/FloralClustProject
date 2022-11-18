@@ -1,23 +1,12 @@
-import clustering
 from clustering.partition import PartitionData
-from data_loading.load_xcms import get_xcms_df
-from smell import get_attractors_list
 import pandas as pd
-from IPython.utils.path import ensure_dir_exists
 from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
-import numpy as np
-import os
-
-from data_loading import load_xcms
-import clustering.VOCluster.louvain as voc_louvain
-from smell import get_attractors_list
 
 
 def get_partition_after_separation(data, data_path, part_data, eps=0.5):
     # clusters_list = get_attractors_list(data, part_data)
     clusters_list = list(part_data.cluster_id_to_metabolites_mapping.keys())
-    print(f'num of clusters:{len(clusters_list)}')
     id_to_cluster_mapping={}
     cluster_to_metabolites_mapping = {}
     old_ids_to_new = {}
@@ -46,7 +35,7 @@ def get_partition_after_separation(data, data_path, part_data, eps=0.5):
         metabolites_in_cluster = set(list(clusters[0]))
         for metab_id in metabolites_in_cluster:
             matb_hyposesys = flower_volumes[flower_volumes['metabolite_id'] == metab_id]
-            if len(matb_hyposesys) > 1:
+            if len(matb_hyposesys) > 1 and metab_id>-1:
                 final_cluster_to_metabolites[free_cluster_id] = list(matb_hyposesys.index)
                 free_cluster_id+=1
     for cluster_id in final_cluster_to_metabolites.keys():
@@ -54,7 +43,6 @@ def get_partition_after_separation(data, data_path, part_data, eps=0.5):
             id_to_cluster_mapping[metab] = cluster_id
     part = PartitionData(cluster_id_to_metabolites_mapping=final_cluster_to_metabolites,
                          id_to_cluster_mapping=id_to_cluster_mapping)
-    print(f'num of clusters:{len(final_cluster_to_metabolites.keys())}')
     return part
 
 

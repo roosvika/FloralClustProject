@@ -1,4 +1,4 @@
-from smell import get_attractors_list
+from floralclust_utils.smell import get_attractors_list
 import pandas as pd
 from IPython.utils.path import ensure_dir_exists
 from sklearn.cluster import DBSCAN

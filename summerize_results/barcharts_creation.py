@@ -1,10 +1,8 @@
 import data_loading
 from data_loading.load_xcms import get_clumn_interval
-from utils import unite_repeated_columns, ensure_dir_exists
-import os
+from floralclust_utils.utils import unite_repeated_columns, ensure_dir_exists
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 
 def get_new_column_name(header):

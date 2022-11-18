@@ -16,7 +16,7 @@ print(f'smelling clusters amount: {len(part_attractors)}')
 part_attractors.sort()
 print(f'smelling clusters: {part_attractors}')
 
-print('VOClust-Louvain')
+print('FloralClust-Louvain')
 data_path = 'Data/combined_data.xls'
 data = load_xcms.get_normilezed_xcms_df(data_path=data_path)
 part = voc_louvain.get_partition(data_path, graph_threshold=0.9, addaptive_threshold=0.95)
@@ -27,7 +27,7 @@ part_attractors.sort()
 print(f'smelling clusters amount: {len(part_attractors)}')
 print(f'smelling clusters: {part_attractors}')
 
-print('VOClust-Infomap')
+print('FloralClust-Infomap')
 data_path = 'Data/combined_data.xls'
 data = load_xcms.get_normilezed_xcms_df(data_path=data_path)
 part = voc_infomap.get_partition(data_path, graph_threshold=0.9, addaptive_threshold=0.95)

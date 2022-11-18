@@ -10,17 +10,18 @@ agents.
 
 ### Installation
 1. Using .whl:
-  1.1. Download .whl file
+
+    1.1. Download .whl file
 
      malunally from: https://github.com/roosvika/FloralClustProject/tree/master/dist
 
      using wget:
-
-     ```console
+     
+      ```console
         foo@bar:~$ wget https://github.com/roosvika/FloralClustProject/blob/master/dist/FloralClust-1.0-py2.py3-none-any.whl
-      ```
-  1.2. Install using pip
-
+      ```    
+   
+    1.2. Install using pip
       ```console
         foo@bar:~$ pip install FloralClust-1.0-py2.py3-none-any.whl
       ```  

@@ -19,7 +19,7 @@ agents.
      ```console
         foo@bar:~$ wget https://github.com/roosvika/FloralClustProject/blob/master/dist/FloralClust-1.0-py2.py3-none-any.whl
       ```
-   2. Install using pip
+  1.2. Install using pip
 
       ```console
         foo@bar:~$ pip install FloralClust-1.0-py2.py3-none-any.whl
@@ -34,12 +34,12 @@ agents.
 ### Input data file
 The input file should be an agrregated XCMS (suffix .xls) file which can be generated using XCMS Online: https://xcmsonline.scripps.edu/landing_page.php?pgcontent=mainPage.
 For each feature should appear the following metadata columns: featureidx,	name,	mzmed, mzmin,	mzmax,	rtmed,	rtmin,	rtmax,	npeaks.
-Additionally - for each sample taken at a certain time interval should appear a column of the following format 'sample_<start time in 24 hour format>-<end time in 24 hour format>_<sample number>'.
+Additionally - for each sample taken at a certain time interval should appear a column of the following format `'sample_<start time in 24 hour format>-<end time in 24 hour format>_<sample number>'`.
 
 For instance sample_8:00-11:00_2. The values in those columns should be the generated intensity by XCMS online (flower samples). The number of replicants for time interval and the numer of time intervals 
 are not limited. 
 Additionaly for each time interval add one blank sample column. 
-The header of those columns should be of the following format 'sample_<start time in 24 hour format>-<end time in 24 hour format>_blank'
+The header of those columns should be of the following format `'sample_<start time in 24 hour format>-<end time in 24 hour format>_blank'`
 
 Example file:
 ![image](https://user-images.githubusercontent.com/62721219/202784744-3134b92a-7f1d-412f-8857-c87054dc6cfd.png)

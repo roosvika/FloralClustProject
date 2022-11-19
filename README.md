@@ -8,7 +8,10 @@ for VOC classification based on an adaptive clustering algorithm that
 considers flowers’ circadian rhythms as flower-insect communication
 agents.
 
+### Environment
+This software was developed and supports Python 3.6 and Windows operating system.
 ### Installation
+Installation should take up to 5 minutes.
 1. Using .whl:
 
     1.1. Download .whl file
@@ -65,12 +68,14 @@ data = load_xcms.get_normilezed_xcms_df(data_path=data_path)
 ```
 
 Create partiotion using FloralClust-Louvain
+(This might take several minutes)
 
 ```python
 combined_part = voc_louvain.get_partition(data_path, graph_threshold=0.9, addaptive_threshold=0.95, dest_dir='Results/CombinedDataResults', file_name='combined_FloralClust_T_09_AT_0.95')
 ```
 
 Create partiotion using FloralClust-Infomap
+(This might take several minutes)
 ```python
 combined_part = voc_infomap.get_partition(data_path, graph_threshold=0.9, addaptive_threshold=0.95, dest_dir='Results/CombinedDataResults', file_name='combined_FloralClust_T_09_AT_0.95')
 ```
@@ -101,6 +106,7 @@ create_flower_barcharts_from_partition(data=data, dest='Results/CombinedDataResu
                                            part_data=combined_part)
 ```
 
-
+Results for the running example for the data file https://github.com/roosvika/FloralClustProject/blob/master/Data/combined_data.xls can be found in https://github.com/roosvika/FloralClustProject/tree/master/Results/CombinedDataResults.
+The total run of the example might take some time (up to 10-15 minutes depending on the speed of your computer.)
 
 
